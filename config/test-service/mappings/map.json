@@ -1,0 +1,76 @@
+{
+  "mappings" : [
+    {
+        "request": {
+            "method": "GET",
+            "url": "/test-service/health"
+
+        },
+        "response": {
+            "status": 200,
+            "body": "{ \"api_status\" : \"API-200\", \"status\" : \"UP\" }",
+            "headers": {
+                "Content-Type": "application/json"
+            }
+        }
+    },
+
+    {
+        "request": {
+            "method": "GET",
+            "url": "/test-service/info"
+        },
+        "response": {
+            "status": 200,
+            "jsonBody": { "api_status" : "API-200", "message" : "Printing the info" },
+            "headers": {
+                "Content-Type": "application/json"
+            }
+        }
+    },
+
+    {
+        "request": {
+            "method": "GET",
+            "url": "/test-service/endpoint1",
+            "headers": {
+              "X-Correlation-Id" : {
+                  "contains": "test-"
+              },
+              "X-Session-Id" : {
+                  "contains": "test-"
+              }
+            }
+
+        },
+        "response": {
+            "status": 200,
+            "jsonBody": { "api_status" : "API-200", "message" : "This is endpoint 1" },
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "delayDistribution": {
+              "type": "uniform",
+              "lower": 380,
+              "upper": 700
+            }
+        }
+    },
+    {
+      "priority":10,
+      "request": {
+          "method": "ANY",
+          "urlPattern": ".*"
+      },
+      "response": {
+          "status": 404,
+          "jsonBody": { "api-status" : "API-404", "message": "Incorrect endpoint" },
+          "headers": {
+            "Content-Type": "application/json"
+          }
+      }
+    }
+
+  ]
+
+}
