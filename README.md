@@ -24,3 +24,7 @@ Example:
 export WIREMOCK_PATH="/opt/wiremock"
 java -jar ${WIREMOCK_PATH}/bin/wiremock-standalone-2.27.2.jar --port 8999 --root-dir ${WIREMOCK_PATH}/config/test-service --container-threads 100
 ```
+
+### Also see
+
+[Gatling Simulation Template](https://github.com/husainkhambaty/gatling-template "Gatling Simulation Template")
